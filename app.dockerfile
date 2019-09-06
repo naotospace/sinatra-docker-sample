@@ -1,5 +1,8 @@
 FROM ruby:2.6.4-alpine3.10
 
+RUN apk update && apk upgrade
+RUN apk add nginx
+
 RUN gem install bundler
 
 RUN mkdir /app

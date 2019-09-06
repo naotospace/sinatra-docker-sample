@@ -1,10 +1,5 @@
-class ShowEnv
-  def call(env)
-    [ 200,                                          # ステータス(Integer)
-      { 'Content-Type' => 'text/plain' },           # レスポンスヘッダ(Hash)
-      env.keys.sort.map {|k| "#{k} = #{env[k]}\n" } # body(StringのArray)
-    ]
-  end
-end
+require "sinatra"
 
-run ShowEnv.new
+require File.expand_path './my_app.rb', __FILE__
+
+run MyApp

@@ -1,14 +1,10 @@
-# sinatra-docker-sample
+# nginx * puma * sinatra
 
 ```bash
-docker build . -t app -f app.dockerfile
-docker run -v `pwd`:/app -p 80:80 -it --rm -d app
-```
+docker run -v `pwd`:/app -v `pwd`/conf/puma.conf:/etc/nginx/conf.d/puma.conf -p 80:80 -it puma_sinatra bash
 
-# nginx * unicorn * sinatra
-
-```bash
-unicorn -c /app/unicorn.rb -E development -D
-cat /app/tmp/pids/unicorn.pid  | xargs kill -QUIT
+puma -C config/puma.rb
+service nginx start
 
 ```
+
